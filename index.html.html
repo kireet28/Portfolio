@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Laxminarasimhakiriti Devulapally | Senior QA Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:    #1a2340;
+    --navy2:   #1e2a4a;
+    --accent:  #d4760e;
+    --accent2: #f5a623;
+    --gold:    #f5a623;
+    --light:   #fdf3e7;
+    --white:   #fffdf9;
+    --gray:    #7c6f62;
+    --border:  #edd9be;
+    --text:    #1a2340;
+    --cream:   #fef9f2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,248,235,0.97);
+    backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 60px;
+    border-bottom: 1px solid #edd9be;
+  }
+  .nav-brand {
+    font-family: 'DM Serif Display', serif;
+    color: var(--navy);
+    font-size: 1.1rem;
+    letter-spacing: 0.01em;
+  }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: #4a3f35;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff8f0 0%, #fdf0dc 50%, #fef5e4 100%);
+    display: flex; align-items: center;
+    padding: 80px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 70% at 80% 30%, rgba(245,166,35,0.3) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 50% at 10% 70%, rgba(212,118,14,0.2) 0%, transparent 60%);
+  }
+  /* subtle grid lines */
+  #hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: 860px;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(212,118,14,0.12);
+    border: 1px solid rgba(212,118,14,0.4);
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  h1.hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  h1.hero-name em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+  .hero-title {
+    font-size: 1.05rem;
+    color: #7c6f62;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-summary {
+    font-size: 1rem;
+    color: #4a3f35;
+    max-width: 640px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--navy);
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 2px solid var(--navy);
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(26,35,64,0.15);
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--gold); }
+  .stat-label {
+    font-size: 0.78rem;
+    color: #9e8e7e;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 90px 5%; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h2.section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .section-sub {
+    color: var(--gray);
+    font-size: 0.95rem;
+    max-width: 540px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--cream, #fef9f2); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1100px;
+  }
+  .about-text p { color: #334155; line-height: 1.85; margin-bottom: 1rem; }
+  .about-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .highlight-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem;
+    border-left: 3px solid var(--accent);
+    transition: box-shadow 0.2s;
+  }
+  .highlight-card:hover { box-shadow: 0 4px 20px rgba(37,99,235,0.1); }
+  .highlight-card .hc-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--navy);
+  }
+  .highlight-card .hc-num span { color: var(--accent); }
+  .highlight-card .hc-label { font-size: 0.8rem; color: var(--gray); margin-top: 2px; }
+  .about-right { display: flex; flex-direction: column; gap: 1rem; }
+  .info-row {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    padding: 1rem 1.2rem;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .info-icon { font-size: 1.2rem; margin-top: 2px; }
+  .info-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.06em; }
+  .info-val { font-weight: 500; color: var(--text); font-size: 0.9rem; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--white); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+  }
+  .skill-card {
+    background: var(--light);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .skill-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(37,99,235,0.1); }
+  .skill-card-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .skill-card-title::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.78rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+  }
+  .tag:hover { background: var(--accent); color: var(--white); border-color: var(--accent); }
+  .tag.genai {
+    background: rgba(212,118,14,0.1);
+    border-color: rgba(212,118,14,0.4);
+    color: #7a3e08;
+  }
+  .tag.genai:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--light); }
+  .timeline { max-width: 860px; position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), rgba(37,99,235,0.1));
+  }
+  .tl-item {
+    display: flex; gap: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .tl-dot {
+    flex-shrink: 0;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 3px var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-top: 4px;
+    z-index: 1;
+  }
+  .tl-content {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem 1.8rem;
+    border: 1px solid var(--border);
+    flex: 1;
+    transition: box-shadow 0.2s;
+  }
+  .tl-content:hover { box-shadow: 0 6px 24px rgba(37,99,235,0.09); }
+  .tl-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 0.3rem;
+  }
+  .tl-company {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+  }
+  .tl-period {
+    font-size: 0.78rem;
+    background: rgba(37,99,235,0.08);
+    color: var(--accent);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .tl-role {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .project-block { margin-bottom: 1.2rem; }
+  .project-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .project-name::before {
+    content: '▸';
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+  .project-period {
+    font-size: 0.75rem;
+    color: var(--gray);
+    font-weight: 400;
+  }
+  .tl-bullets { list-style: none; padding: 0; }
+  .tl-bullets li {
+    font-size: 0.87rem;
+    color: #475569;
+    padding: 3px 0 3px 1rem;
+    position: relative;
+    line-height: 1.65;
+  }
+  .tl-bullets li::before {
+    content: '–';
+    position: absolute; left: 0;
+    color: var(--accent);
+  }
+  .tl-bullets li strong { color: var(--navy); }
+
+  /* ── ACHIEVEMENTS ── */
+  #achievements { background: #1a2340; }
+  #achievements .section-label { color: #f5a623; }
+  #achievements h2.section-title { color: #ffffff; }
+  #achievements .section-sub { color: rgba(255,255,255,0.65); }
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+  }
+  .award-card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(245,166,35,0.35);
+    border-radius: 12px;
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .award-card:hover { background: rgba(245,166,35,0.15); transform: translateY(-3px); }
+  .award-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+  .award-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: #f5c842;
+    margin-bottom: 0.4rem;
+  }
+  .award-desc { font-size: 0.82rem; color: rgba(255,255,255,0.8); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--white); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 860px;
+    align-items: start;
+  }
+  .contact-intro p { color: var(--gray); line-height: 1.8; margin-bottom: 1.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); background: rgba(37,99,235,0.04); }
+  .contact-link .cl-icon { font-size: 1.3rem; }
+  .contact-link .cl-label { font-size: 0.72rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.07em; }
+  .contact-link .cl-val { font-size: 0.88rem; }
+
+  .cert-block {
+    background: var(--light);
+    border-radius: 12px;
+    padding: 1.8rem;
+    border: 1px solid var(--border);
+  }
+  .cert-block h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+  .cert-item {
+    display: flex; align-items: center; gap: 0.8rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.87rem;
+  }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-badge {
+    background: var(--accent);
+    color: var(--white);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2rem 5%;
+    font-size: 0.82rem;
+  }
+  footer span { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-highlights { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 2rem; }
+    .nav-links { display: none; }
+    .timeline::before { left: 15px; }
+    .tl-dot { width: 32px; height: 32px; font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Kiriti <span>D.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">ISTQB Certified · Open to Opportunities</div>
+    <h1 class="hero-name">Laxminarasimhakiriti<br/><em>Devulapally</em></h1>
+    <p class="hero-title">Senior QA Engineer &nbsp;·&nbsp; QA Lead &nbsp;·&nbsp; Telecom BSS Specialist</p>
+    <p class="hero-summary">
+      15+ years of end-to-end quality assurance expertise across Telecom BSS, E-Commerce, and HRMS domains.
+      Proven QA SPOC owning full test governance — from strategy design to production sign-off.
+      Currently exploring GenAI and chatbot development with OpenAI, LangChain &amp; Streamlit.
+    </p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn-primary">View Experience</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">15<span>+</span></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">40<span>+</span></div>
+        <div class="stat-label">Releases / Year</div>
+      </div>
+      <div>
+        <div class="stat-num">380<span>+</span></div>
+        <div class="stat-label">Regression Cases / Cycle</div>
+      </div>
+      <div>
+        <div class="stat-num">50<span>+</span></div>
+        <div class="stat-label">API Integrations Validated</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <h2 class="section-title">About Me</h2>
+  <p class="section-sub">A quality-first engineer with a passion for release excellence and emerging tech.</p>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>
+        I'm a Senior QA Engineer with over 15 years of hands-on experience ensuring the quality of
+        complex enterprise systems across Telecom BSS, E-Commerce, and HRMS platforms. I've served as
+        QA SPOC on large-scale, multi-country telecom deployments — owning everything from test strategy
+        design to Go/No-Go decisions at release time.
+      </p>
+      <p>
+        My experience spans CRM, Order Management, Billing, Charging, and Provisioning systems.
+        I'm equally comfortable writing detailed test strategies, running API validations in Postman,
+        or deep-diving into Cassandra database checks and Docker log analysis.
+      </p>
+      <p>
+        Outside of QA, I'm actively building conversational AI applications using the OpenAI API,
+        LangChain, and Streamlit — exploring how GenAI can transform the way we approach test automation
+        and quality workflows.
+      </p>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <div class="hc-num">55<span>%</span></div>
+          <div class="hc-label">Prepaid revenue impacted by catalog releases I owned</div>
+        </div>
+        <div class="highlight-card">
+          <div class="hc-num">200<span>+</span></div>
+          <div class="hc-label">Test scenarios designed per release</div>
+        </div>
+        <div class="highlight-card">
+          <div class="hc-num">100<span>%</span></div>
+          <div class="hc-label">Order lifecycle accuracy — Giga Mobiili</div>
+        </div>
+        <div class="highlight-card">
+          <div class="hc-num">4<span>+</span></div>
+          <div class="hc-label">Industry awards received</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div>
+          <div class="info-label">Location</div>
+          <div class="info-val">Hyderabad, India</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📧</div>
+        <div>
+          <div class="info-label">Email</div>
+          <div class="info-val">kireet.wk@gmail.com</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📱</div>
+        <div>
+          <div class="info-label">Phone</div>
+          <div class="info-val">+91 9912470919</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🎓</div>
+        <div>
+          <div class="info-label">Education</div>
+          <div class="info-val">B.Tech, Computer Science — JNTU Hyderabad</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🏅</div>
+        <div>
+          <div class="info-label">Certification</div>
+          <div class="info-val">ISTQB Certified Tester — Foundation Level</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🌐</div>
+        <div>
+          <div class="info-label">Languages</div>
+          <div class="info-val">English · Telugu · Hindi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I Know</div>
+  <h2 class="section-title">Technical Skills</h2>
+  <p class="section-sub">A broad toolkit built over 15+ years across testing, DevOps, and emerging AI technologies.</p>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-card-title">Test Management & Tracking</div>
+      <div class="skill-tags">
+        <span class="tag">JIRA</span><span class="tag">Xray</span><span class="tag">HP ALM</span>
+        <span class="tag">Quality Center</span><span class="tag">RTM</span><span class="tag">Confluence</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">API & Web Services Testing</div>
+      <div class="skill-tags">
+        <span class="tag">Postman</span><span class="tag">SoapUI</span><span class="tag">Insomnia</span>
+        <span class="tag">REST</span><span class="tag">SOAP</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Automation & Frameworks</div>
+      <div class="skill-tags">
+        <span class="tag">Robot Framework</span><span class="tag">Jenkins (CI/CD)</span>
+        <span class="tag">Playwright</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Databases</div>
+      <div class="skill-tags">
+        <span class="tag">SQL Server</span><span class="tag">Apache Cassandra</span>
+        <span class="tag">CQL</span><span class="tag">BSSAPI</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Monitoring & Debugging</div>
+      <div class="skill-tags">
+        <span class="tag">Docker</span><span class="tag">Kibana</span><span class="tag">Rancher</span>
+        <span class="tag">Grafana</span><span class="tag">Kafka Explorer</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">DevOps & Version Control</div>
+      <div class="skill-tags">
+        <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Jenkins</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Domain Platforms</div>
+      <div class="skill-tags">
+        <span class="tag">Telecom BSS</span><span class="tag">Prepaid & Postpaid</span>
+        <span class="tag">TIBCO FOM</span><span class="tag">BWPM</span><span class="tag">Track & Trace</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Testing Types</div>
+      <div class="skill-tags">
+        <span class="tag">Functional</span><span class="tag">Integration</span><span class="tag">E2E</span>
+        <span class="tag">Regression</span><span class="tag">API</span><span class="tag">GUI</span>
+        <span class="tag">UAT</span><span class="tag">Component</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">⚡ GenAI & Emerging Tech</div>
+      <div class="skill-tags">
+        <span class="tag genai">OpenAI API</span><span class="tag genai">LangChain</span>
+        <span class="tag genai">Streamlit</span><span class="tag genai">Python</span>
+        <span class="tag genai">Prompt Engineering</span><span class="tag genai">Chatbot Dev</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career Journey</div>
+  <h2 class="section-title">Work Experience</h2>
+  <p class="section-sub">15+ years across Telecom, E-Commerce, and HRMS domains.</p>
+  <div class="timeline">
+
+    <!-- Qvantel -->
+    <div class="tl-item reveal">
+      <div class="tl-dot">Q</div>
+      <div class="tl-content">
+        <div class="tl-header">
+          <div class="tl-company">Qvantel Software Solutions</div>
+          <div class="tl-period">Jan 2019 – Feb 2026</div>
+        </div>
+        <div class="tl-role">Senior QA Engineer (SPOC) · Hyderabad, India</div>
+
+        <div class="project-block">
+          <div class="project-name">Project 1: Wind Tre, Italy — Telecom BSS / Product Catalog <span class="project-period">Oct 2023 – Feb 2026</span></div>
+          <ul class="tl-bullets">
+            <li>Owned QA governance for <strong>40+ annual Product Catalog releases</strong> impacting <strong>55% of prepaid revenue</strong>.</li>
+            <li>Managed <strong>200+ test scenarios per release</strong> covering pricing rules, offer lifecycle, and customer journey workflows.</li>
+            <li>Validated end-to-end flows across <strong>CRM, Order Management, Charging, Billing, and Provisioning</strong> systems.</li>
+            <li>Executed <strong>380+ regression cases</strong> per cycle via <strong>Jenkins CI/CD pipelines</strong>, reducing production defects significantly.</li>
+            <li>Served as <strong>QA SPOC</strong> for Go/No-Go decisions and production readiness across multi-country deployments.</li>
+            <li>Awarded <strong>Certificate of Appreciation</strong> for fast-track catalog test validations.</li>
+          </ul>
+        </div>
+
+        <div class="project-block">
+          <div class="project-name">Project 2: Giga Mobiili, Finland — Postpaid BSS (MVNO) <span class="project-period">Sep 2022 – Sep 2023</span></div>
+          <ul class="tl-bullets">
+            <li>Led QA ownership validating <strong>30+ critical use cases</strong> across onboarding, billing, invoicing, and payment workflows.</li>
+            <li>Validated <strong>MNP (Port-In) flows</strong> through NUMSI channel achieving <strong>100% order lifecycle accuracy</strong>.</li>
+            <li>Ensured billing accuracy across Hot Bill generation, RBS invoicing, and multi-mode payment processing.</li>
+            <li>Designed Test Strategy using <strong>JIRA, RTM, and Xray</strong>; led UAT enablement sessions for business stakeholders.</li>
+          </ul>
+        </div>
+
+        <div class="project-block">
+          <div class="project-name">Project 3: Millicom Tigo, LATAM — Telecom BSS Digital & RFC Integrations <span class="project-period">Jan 2019 – Aug 2022</span></div>
+          <ul class="tl-bullets">
+            <li>Validated <strong>50+ REST/SOAP integration adapters</strong> via Postman and SoapUI across TIBCO systems (FOM, Track & Trace, BWPM).</li>
+            <li>Executed revenue validations through <strong>UNL file processing</strong> and Cassandra (HPD) / BSSAPI database checks.</li>
+            <li>Conducted log analysis using Docker and TIBCO tools for root cause identification and faster resolution.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- GSS Infotech -->
+    <div class="tl-item reveal">
+      <div class="tl-dot">G</div>
+      <div class="tl-content">
+        <div class="tl-header">
+          <div class="tl-company">GSS Infotech Pvt. Ltd.</div>
+          <div class="tl-period">Feb 2018 – Jan 2019</div>
+        </div>
+        <div class="tl-role">Senior Test Engineer · Hyderabad, India</div>
+        <div class="project-block">
+          <div class="project-name">Project: Millicom Tigo, LATAM — Telecom BSS Digital</div>
+          <ul class="tl-bullets">
+            <li>Performed Functional, Integration, and Regression testing for Millicom Tigo BSS Digital platform across LATAM markets.</li>
+            <li>Validated REST/SOAP web services and integration adapters; conducted database validations for billing accuracy.</li>
+            <li>Designed structured test plans and contributed to Agile ceremonies and stakeholder reporting.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verizon -->
+    <div class="tl-item reveal">
+      <div class="tl-dot">V</div>
+      <div class="tl-content">
+        <div class="tl-header">
+          <div class="tl-company">Verizon</div>
+          <div class="tl-period">Jun 2012 – Dec 2017</div>
+        </div>
+        <div class="tl-role">Analyst — IT Quality Assurance · Hyderabad, India</div>
+
+        <div class="project-block">
+          <div class="project-name">Project 1: Verizon Wireless E-Commerce Application <span class="project-period">Jan 2016 – Dec 2017</span></div>
+          <ul class="tl-bullets">
+            <li>Supported Agile-driven releases with end-to-end order lifecycle validation for activations, upgrades, and service modifications.</li>
+            <li>Executed Functional, Regression, and E2E tests across <strong>cross-browser and cross-platform environments</strong>.</li>
+            <li>Received <strong>Verizon Ovation Award</strong> (Payment Cloud) and <strong>Verizon SPOT Award</strong> (SAC Project; Felix Unlimited Plans).</li>
+          </ul>
+        </div>
+
+        <div class="project-block">
+          <div class="project-name">Project 2: Verizon Broadband Portal — Bill View & Bill Pay <span class="project-period">Jun 2012 – Dec 2015</span></div>
+          <ul class="tl-bullets">
+            <li>Validated Credit Card, Debit Card, Auto Pay modes, Payment Gateway integrations, and fraud detection scenarios.</li>
+            <li>Managed defect lifecycle in HP QC and JIRA; supported production release validation.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- NuView -->
+    <div class="tl-item reveal">
+      <div class="tl-dot">N</div>
+      <div class="tl-content">
+        <div class="tl-header">
+          <div class="tl-company">NuView Systems, Inc.</div>
+          <div class="tl-period">Aug 2010 – Jun 2012</div>
+        </div>
+        <div class="tl-role">Software Engineer (QA) — HRMS & Payroll · Hyderabad, India</div>
+        <ul class="tl-bullets">
+          <li>Executed Functional, System, and Regression testing across Core HR, ESS/MSS, Compensation, and Recruiting modules.</li>
+          <li>Created structured test cases with defined test data; collaborated with devs on defect resolution and go-live support.</li>
+          <li>Recognized with <strong>Emerging Team Player Award</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-label">Recognition</div>
+  <h2 class="section-title">Achievements & Awards</h2>
+  <p class="section-sub">Recognized across multiple organizations for quality, speed, and impact.</p>
+  <div class="awards-grid reveal">
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div class="award-title">Verizon Ovation Award</div>
+      <div class="award-desc">Payment Cloud Project</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">⭐</div>
+      <div class="award-title">Verizon SPOT Award</div>
+      <div class="award-desc">SAC Project & Felix — Unlimited Plans Launch</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🎖️</div>
+      <div class="award-title">Certificate of Appreciation</div>
+      <div class="award-desc">Fast-track catalog test validations — Qvantel</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🌟</div>
+      <div class="award-title">Emerging Team Player</div>
+      <div class="award-desc">NuView Systems</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Let's Connect</div>
+  <h2 class="section-title">Get In Touch</h2>
+  <p class="section-sub">Open to Senior QA / Lead QA opportunities. Feel free to reach out.</p>
+  <div class="contact-grid reveal">
+    <div class="contact-intro">
+      <p>
+        I'm actively looking for Senior QA Engineer or Lead QA roles where I can bring my expertise in
+        Telecom BSS, release governance, and quality strategy. If you're building reliable, high-quality
+        systems and need someone who can own QA end-to-end — let's talk.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:kireet.wk@gmail.com" class="contact-link">
+          <span class="cl-icon">📧</span>
+          <div>
+            <div class="cl-label">Email</div>
+            <div class="cl-val">kireet.wk@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+919912470919" class="contact-link">
+          <span class="cl-icon">📱</span>
+          <div>
+            <div class="cl-label">Phone</div>
+            <div class="cl-val">+91 9912470919</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/laxminarasimhakiriti-d-59222216" target="_blank" class="contact-link">
+          <span class="cl-icon">💼</span>
+          <div>
+            <div class="cl-label">LinkedIn</div>
+            <div class="cl-val">laxminarasimhakiriti-d-59222216</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="cert-block">
+        <h3>Certifications & Education</h3>
+        <div class="cert-item">
+          <span class="cert-badge">ISTQB</span>
+          <span>Certified Tester — Foundation Level</span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-badge">B.Tech</span>
+          <span>Computer Science & Engineering — JNTU Hyderabad</span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-badge">GenAI</span>
+          <span>OpenAI API · LangChain · Streamlit · Python (Self-learning)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built with care · <span>Laxminarasimhakiriti Devulapally</span> · Senior QA Engineer · Hyderabad, India</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
